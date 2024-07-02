@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      background-color: white;
+      transition: background-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .Sun {
+      background-color: black;
+      transition: background-color 0.3s ease;
+      color: white;
+    }
+
+    .Sun:hover {
+      background-color: yellow;
+      color: black;
+    }
+
+    .Thunder {
+      background-color: black;
+      transition: background-color 0.3s ease;
+      color: white;
+    }
+
+    .Thunder:hover {
+      background-color: grey;
+      color: black;
+    }
+
+    .Cloudy {
+      background-color: black;
+      transition: background-color 0.3s ease;
+      color: white;
+    }
+
+    .Cloudy:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .Reset, .icon {
+      background-color: black;
+      color: white;
+    }
+
+    .icon {
+      margin-top: 20px;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+    }
+
+    .icon_b {
+      position: absolute;
+      animation: fall 0.5s ease; 
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100vh);
+        opacity: 1; 
+      }
+
+      100% {
+        transform: translateY(100vh);
+        opacity: 0; 
+      }
+    }
+    
+  </style>
+</head>
+
+<body>
+
+  <h1>Weather Simulation</h1>
+
+  <div>
+    <button class = "Sun" onclick = "sun_button ()">Sun Simulation</button>
+
+    <button class = "Thunder" onclick = "thunder_button ()">Thunder Simulation</button>
+
+    <button class = "Cloudy" onclick = "cloudy_button()">Cloudy Simulation</button>
+
+    <button class = "Reset" onclick = "window.location.href = 'index.html';">Reset Simulation</button>
+  </div>
+
+  <div class = "icon" id = "icon" onclick = "icon_button()">?</div>
+
+  <script>
+    function sun_button() {
+      document.body.style.backgroundColor = "yellow";
+      document.body.style.color = "black";
+      document.getElementById("icon").innerHTML = "☀️";
+    }
+    
+    function thunder_button() {
+      document.body.style.backgroundColor = "grey";
+      document.body.style.color = "black";
+      document.getElementById("icon").innerHTML = "⛈️";
+    }
+
+    function cloudy_button() {
+      document.body.style.backgroundColor = "white";
+      document.body.style.color = "black";
+      document.getElementById("icon").innerHTML = "☁️";
+    }
+
+    function icon_button() {
+      var icon = document.getElementById("icon").innerHTML;
+      for (var i = 0; i < 100; i++) { 
+        var div = document.createElement ('div');
+        div.className = "icon_b";
+        div.innerHTML = icon;
+        div.style.left = Math.random () * 100 + 'vw'; 
+        div.style.animationDuration = (Math.random() * 1 + 1) + 's';
+        div.style.animationFillMode = 'forwards';
+        document.body.appendChild(div);
+        div.addEventListener ('animationend', () => {
+          div.remove ();
+        });
+      }
+    }
+  
+  </script>
+  
+</body>
+
+</html>
